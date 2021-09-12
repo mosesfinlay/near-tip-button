@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import TipButton from "./TipButton";
 import * as nearAPI from "near-api-js";
-const { connect, keyStores, WalletConnection } = nearAPI;
+const { utils, connect, keyStores, WalletConnection } = nearAPI;
 
 // Connection configuration
 const config = {
@@ -28,6 +30,23 @@ class App extends Component {
     accountId: null,
   }
 
+  sendNear = async (amount, receiver) => {
+    const { wallet } = this.state;
+
+    // Account sending the Near
+    const account = wallet.account();
+
+    // Convert the human readable number of Near we are sending to YoctoNear
+    // YoctoNear is the number of indivisible units in one NEAR
+    const yoctoNear = utils.format.parseNearAmount(amount);
+
+    // Transfer tokens
+    await account.sendMoney(
+      receiver, // Receiver account id
+      yoctoNear // Amount in yoctoNEAR
+    );
+  }
+
   // Initialize connection
   async initNear() {
     const near = await connect(config.testnet);
@@ -49,12 +68,6 @@ class App extends Component {
     wallet.requestSignIn("example.testnet");
   }
 
-  nearLogout = () => {
-    const { wallet } = this.state;
-
-    wallet.requestSignIn("example.testnet");
-  }
-
   componentDidMount() {
     this.initNear();
   }
@@ -69,12 +82,20 @@ class App extends Component {
         <h1 className="fw-bolder">Near Tip Button</h1>
         <p className="lead mb-5">An example implementation of a tipping feature using Near.</p>
 
-        <button
-          className="btn btn-outline-dark mb-2"
-          onClick={this.nearLogin}
-        >
-          Login with Near
-        </button>
+        {accountId ?
+          <TipButton
+            // Change this to your account id!
+            receiver="mosesfinlay.testnet"
+            sendNear={this.sendNear}
+          />
+        :
+          <button
+            className="btn btn-outline-dark mb-2"
+            onClick={this.nearLogin}
+          >
+            Login with Near
+          </button>
+        }
 
         {accountId &&
           <p>Signed in as: {accountId}</p>
