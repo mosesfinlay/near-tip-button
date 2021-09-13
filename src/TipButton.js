@@ -28,7 +28,7 @@ class TipButton extends Component {
     return (
       <>
         <button
-          className="btn btn-outline-primary mb-2"
+          className="btn btn-outline-primary mb-3"
           onClick={this.toggleModal}
         >
           Ⓝ Tip Near

@@ -64,7 +64,6 @@ class App extends Component {
 
   nearLogin = () => {
     const { wallet } = this.state;
-
     wallet.requestSignIn("example.testnet");
   }
 
@@ -90,7 +89,7 @@ class App extends Component {
           />
         :
           <button
-            className="btn btn-outline-dark mb-2"
+            className="btn btn-outline-dark mb-3"
             onClick={this.nearLogin}
           >
             Login with Near
@@ -98,7 +97,12 @@ class App extends Component {
         }
 
         {accountId &&
-          <p>Signed in as: {accountId}</p>
+          <>
+            <p className="mb-0">Signed in as: {accountId}</p>
+
+            {/* Clickable link for user's to sign out */}
+            <a href="/" className="fw-light" onClick={() => this.state.wallet.signOut()}>Sign out</a>
+          </>
         }
       </div>
     );
