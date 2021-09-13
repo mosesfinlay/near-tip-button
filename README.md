@@ -1,5 +1,5 @@
 # How to Add a Tip Button to Your Near Dapp
-### This tutorial will show you how to add tipping functionality to your Near Dapp.
+### This tutorial will show you how to add tipping functionality to your decentralized application on Near.
 
 All the source code for this tutorial can be found on Github: [https://github.com/mosesfinlay/near-tip-button](https://github.com/mosesfinlay/near-tip-button)
 
