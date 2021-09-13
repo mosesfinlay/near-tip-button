@@ -289,7 +289,8 @@ Then update the render method on the App component to include the TipButton comp
 
   {accountId ?
     <TipButton
-      **_// Change this to your account id!_**  receiver=**"_YOUR_ACCOUNT_ID_**.testnet**"**
+      // Change this to your account id!
+      receiver="_YOUR_ACCOUNT_ID_.testnet"
       sendNear={this.sendNear}
     />
   :
