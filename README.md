@@ -279,7 +279,7 @@ const { utils, connect, keyStores, WalletConnection } = nearAPI;
 // ...
 ```
 
-Then update the render method on the App component to include the TipButton component. Make sure to replace **_YOUR_ACCOUNT_ID_** with the account id receiving the tip. We’ll also add a small link at the bottom for users to sign out.
+Then update the render method on the App component to include the TipButton component. Make sure to replace **_YOUR_ACCOUNT_ID\_** with the account id receiving the tip. We’ll also add a small link at the bottom for users to sign out.
 
 ```jsx
 // App.js
